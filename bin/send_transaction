@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "harmony/pangaea"
+
+puts "Usage: ./bin/send_transaction FROM_ADDRESS FROM_SHARD TO_ADDRESS TO_SHARD AMOUNT"
+
+from_address      =   ARGV[0]
+from_shard        =   ARGV[1].to_i
+to_address        =   ARGV[2]
+to_shard          =   ARGV[3].to_i
+amount            =   ARGV[4].to_f
+
+Harmony::Pangaea::Wallet.send(from_address: from_address, from_shard: from_shard, to_address: to_address, to_shard: to_shard, amount: amount)
