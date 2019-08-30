@@ -9,14 +9,22 @@ module Harmony
         raise ArgumentError, "You need to specify the to shard"     if to_shard.to_s.empty?
         raise ArgumentError, "You need to specify the amount"       if amount.to_s.empty?
         
-        amount      ||=   0.00000001
-        command       =   "#{::Harmony::Pangaea.configuration.wallet_script} transfer --from #{from_address} --shardID #{from_shard} --to #{to_address} --shardID #{to_shard} --amount #{amount} --pass pass:"
-        command       =   daemonize ? "#{command} > /dev/null 2>&1 &" : command
-        output        =   nil
+        transaction_id  =   nil
+        command         =   "#{::Harmony::Pangaea.configuration.wallet_script} transfer --from #{from_address} --shardID #{from_shard} --to #{to_address} --shardID #{to_shard} --amount #{amount} --pass pass:"
+        command         =   daemonize ? "#{command} > /dev/null 2>&1 &" : command
+        output          =   nil
         
         puts "[Harmony::Pangaea::Wallet] - #{Time.now}: Running wallet command:\n#{command}" if ::Harmony::Pangaea.configuration.verbose
-
-        pid           =   Process.spawn(command)
+        
+        if daemonize
+          pid           =   Process.spawn(command)
+        else
+          output        =   `#{command}`
+        end
+        
+        puts "[Harmony::Pangaea::Wallet] - #{Time.now}: Output from wallet command:\n#{output}" if ::Harmony::Pangaea.configuration.verbose && !output.to_s.empty?
+        
+        return transaction_id
       end
             
     end
