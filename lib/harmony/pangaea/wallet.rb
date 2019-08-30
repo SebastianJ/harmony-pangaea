@@ -22,7 +22,28 @@ module Harmony
           output        =   `#{command}`
         end
         
-        puts "[Harmony::Pangaea::Wallet] - #{Time.now}: Output from wallet command:\n#{output}" if ::Harmony::Pangaea.configuration.verbose && !output.to_s.empty?
+        if !output.to_s.empty?
+          puts "[Harmony::Pangaea::Wallet] - #{Time.now}: Output from wallet command:\n#{output}" if ::Harmony::Pangaea.configuration.verbose
+          transaction_id        =   parse_transaction_id(output)
+          puts "[Harmony::Pangaea::Wallet] - #{Time.now}: Successfully created transaction #{transaction_id}" if ::Harmony::Pangaea.configuration.verbose
+        end
+        
+        return transaction_id
+      end
+      
+      def parse_transaction_id(output, regex: /Transaction Id for shard \d+: /i)
+        transaction_id          =   nil
+        
+        if !output.to_s.empty?
+          rows                  =   output.split("\n").collect(&:strip)
+          
+          rows.each do |row|
+            if row =~ regex
+              transaction_id    =   row.gsub(regex, "")
+              break
+            end
+          end
+        end
         
         return transaction_id
       end
