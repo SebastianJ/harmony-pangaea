@@ -8,10 +8,8 @@ module Harmony
         output        =   nil
         
         puts "[Harmony::Pangaea::Wallet] - #{Time.now}: Running wallet command:\n#{command}" if ::Harmony::Pangaea.configuration.verbose
-        
-        IO.popen(command) do |io|
-          output      =   io.gets&.strip
-        end
+
+        output        =   `#{command}`
         
         puts "[Harmony::Pangaea::Wallet] - #{Time.now}: Wallet output:\n#{output}" if ::Harmony::Pangaea.configuration.verbose
       end
