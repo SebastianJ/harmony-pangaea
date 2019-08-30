@@ -26,6 +26,21 @@ This allows you to parse the network status from https://harmony.one/pga/network
 
 ```ruby
 Harmony::Pangaea::Network.new.status
+
+=> {:shards=>
+  {0=>
+    {:shard_number=>0,
+     :block_number=>62972,
+     :status=>:online,
+     :last_updated=>#<DateTime: 2019-08-30T09:36:11+00:00 ((2458726j,34571s,0n),+0s,2299161j)>,
+     :nodes=>
+      {:online=>
+        ["one10vk9pjvrjgne5wyw8l50rmrh4tpjwgfpqmuz6q",
+         "one12cxl7l5hfx4wxtlp4zfttaap3apdmyvj260kr8",
+         "one12d53ksxpvdcsdflzyg9sjdpcp0hzu9eqm7qf4n",
+         "one12emxdmtwetakanpv345eednsfkzmtu9zttfvhy",
+         "one12hkj564gwcvfruqaw4sxnlrcf9hfr87kydjpfg",
+         ...
 ```
 
 ## Development
