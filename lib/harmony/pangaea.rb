@@ -8,6 +8,7 @@ require "harmony/pangaea/configuration"
 
 require "harmony/pangaea/client"
 require "harmony/pangaea/network"
+require "harmony/pangaea/wallet"
 
 module Harmony
   module Pangaea
