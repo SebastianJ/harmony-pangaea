@@ -2,7 +2,7 @@ module Harmony
   module Pangaea
     class Wallet
       
-      def self.send(from_address:, from_shard:, to_address:, to_shard:, amount: nil, daemonize: true)
+      def self.send(from_address:, from_shard:, to_address:, to_shard:, amount: nil, daemonize: false)
         raise ArgumentError, "You need to specify the from address" if from_address.to_s.empty?
         raise ArgumentError, "You need to specify the from shard"   if from_shard.to_s.empty?
         raise ArgumentError, "You need to specify the to address"   if to_address.to_s.empty?
