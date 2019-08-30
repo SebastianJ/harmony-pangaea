@@ -70,6 +70,10 @@ module Harmony
           
             if matches && matches.captures.any?
               current_shard   =   matches&.[](:shard_number)&.to_i
+              node_count      =   matches&.[](:count)&.to_i
+              
+              self.data[:shards][current_shard][:node_count]          ||=   {}
+              self.data[:shards][current_shard][:node_count][status]    =   node_count
             end
           
             if row =~ self.regexes[:address]
