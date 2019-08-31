@@ -9,7 +9,7 @@ module Harmony
         self.data             =   {shards: {}, nodes: {}}
         
         self.regexes          =   {
-          shard_status:      /Shard (?<shard_number>\d+) is on Block (?<block_number>\d+)\. Status is: (?<status>Online|Offline)\!\s*\(Last updated: (?<last_updated>[^\)]*)\)/i,
+          shard_status:      /Shard (?<shard_number>\d+) is on Block (?<block_number>\d+)\. Status is: (?<status>Online|Offline)(\!|[\.]+)\s*\(Last updated: (?<last_updated>[^\)]*)\)/i,
           nodes:             /(?<status>Online|Offline): (?<count>\d+) total/i,
           shard_node_status: /Shard (?<shard_number>\d+): (?<count>\d+) node(s)?/i,
           address:           /^one[a-z0-9]+$/
