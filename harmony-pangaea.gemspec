@@ -37,6 +37,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   
   spec.add_dependency 'faraday', '~> 1.0.0.pre.rc1'
+  spec.add_dependency 'faraday_middleware', '~> 0.13.1'
 
   spec.add_development_dependency "bundler", "~> 1.17"
   spec.add_development_dependency "rake", "~> 10.0"

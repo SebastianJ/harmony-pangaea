@@ -8,6 +8,7 @@ module Harmony
         
         self.client               =   ::Faraday.new(self.configuration.host) do |builder|
           builder.response :logger, ::Logger.new(STDOUT), bodies: true if self.configuration.verbose
+          builder.response :json, content_type: /\bjson$/
           builder.adapter self.configuration.faraday.fetch(:adapter, ::Faraday.default_adapter)
         end
       end

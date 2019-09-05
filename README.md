@@ -25,7 +25,7 @@ Or install it yourself as:
 This allows you to parse the network status from https://harmony.one/pga/network in order to insert it in a database, send transactions etc. etc.
 
 ```ruby
-Harmony::Pangaea::Network.new.status
+Harmony::Pangaea::Network::Status.status
 
 => {:shards=>
   {0=>

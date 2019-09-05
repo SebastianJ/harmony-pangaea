@@ -1,4 +1,6 @@
 require "faraday"
+require "faraday_middleware"
+require "csv"
 require "logger"
 require "date"
 
@@ -7,8 +9,16 @@ require "harmony/pangaea/version"
 require "harmony/pangaea/configuration"
 
 require "harmony/pangaea/client"
-require "harmony/pangaea/network"
+require "harmony/pangaea/network/text_parser"
+require "harmony/pangaea/network/json_parser"
+require "harmony/pangaea/network/csv_parser"
+require "harmony/pangaea/network/status"
+require "harmony/pangaea/network/balances"
 require "harmony/pangaea/wallet"
+
+if !Hash.instance_methods(false).include?(:symbolize_keys)
+  require "harmony/pangaea/extensions/hash"
+end
 
 module Harmony
   module Pangaea
