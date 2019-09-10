@@ -12,7 +12,7 @@ module Harmony
           raise ArgumentError, "You need to specify the amount"       if amount.to_s.empty?
         
           transaction_id  =   nil
-          command         =   "#{::Harmony::Pangaea.configuration.wallet_script} transfer --from #{from_address} --to #{to_address} --amount #{amount} --shardID #{from_shard} --pass pass:"
+          command         =   "#{::Harmony::Pangaea.configuration.wallet_script} transfer --from #{from_address} --to #{to_address} --shardID #{from_shard} --toShardID #{to_shard} --amount #{amount} --pass pass:"
           command         =   daemonize ? "#{command} > /dev/null 2>&1 &" : command
           output          =   nil
         
