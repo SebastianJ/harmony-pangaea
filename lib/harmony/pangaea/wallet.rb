@@ -4,7 +4,7 @@ module Harmony
       
       class << self
         
-        def send(from_address:, from_shard:, to_address:, to_shard:, amount: nil, daemonize: false)
+        def send(from_address:, from_shard:, to_address:, to_shard:, amount: nil, wallet_script: ::Harmony::Pangaea.configuration.wallet_script, binary: :default, daemonize: false)
           raise ArgumentError, "You need to specify the from address" if from_address.to_s.empty?
           raise ArgumentError, "You need to specify the from shard"   if from_shard.to_s.empty?
           raise ArgumentError, "You need to specify the to address"   if to_address.to_s.empty?
@@ -12,7 +12,9 @@ module Harmony
           raise ArgumentError, "You need to specify the amount"       if amount.to_s.empty?
         
           transaction_id  =   nil
-          command         =   "#{::Harmony::Pangaea.configuration.wallet_script} transfer --from #{from_address} --to #{to_address} --shardID #{from_shard} --toShardID #{to_shard} --amount #{amount} --pass pass:"
+          command         =   "#{wallet_script} transfer --from #{from_address} --to #{to_address} --amount #{amount} --shardID #{from_shard}"
+          command        +=   " --toShardID #{to_shard}" if binary.to_sym.eql?(:cross_shard)
+          command        +=   " --pass pass:"
           command         =   daemonize ? "#{command} > /dev/null 2>&1 &" : command
           output          =   nil
         
