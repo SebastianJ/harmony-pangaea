@@ -3,10 +3,10 @@ module Harmony
     class Client
       attr_accessor :configuration, :client
       
-      def initialize(configuration: ::Harmony::Pangaea.configuration)
+      def initialize(host: :default, configuration: ::Harmony::Pangaea.configuration)
         self.configuration        =   configuration
         
-        self.client               =   ::Faraday.new(self.configuration.host) do |builder|
+        self.client               =   ::Faraday.new(self.configuration.hosts[host]) do |builder|
           builder.response :logger, ::Logger.new(STDOUT), bodies: true if self.configuration.verbose
           builder.response :json, content_type: /\bjson$/
           builder.adapter self.configuration.faraday.fetch(:adapter, ::Faraday.default_adapter)

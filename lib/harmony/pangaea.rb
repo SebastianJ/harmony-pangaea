@@ -15,6 +15,7 @@ require "harmony/pangaea/network/csv_parser"
 require "harmony/pangaea/network/status"
 require "harmony/pangaea/network/balances"
 require "harmony/pangaea/wallet"
+require "harmony/pangaea/explorer"
 
 if !Hash.instance_methods(false).include?(:symbolize_keys)
   require "harmony/pangaea/extensions/hash"

@@ -1,7 +1,7 @@
 module Harmony
   module Pangaea
     class Configuration
-      attr_accessor :address, :scripts, :host, :verbose, :faraday
+      attr_accessor :address, :scripts, :hosts, :verbose, :faraday
     
       def initialize
         # Make sure to configure your address so the app knows who you are
@@ -12,7 +12,11 @@ module Harmony
           wallet: "/root/wallet.sh -t"
         }
         
-        self.host         =   "https://harmony.one"
+        self.hosts        =   {
+          default: "https://harmony.one",
+          explorer: "https://explorer.pangaea.harmony.one:8888"
+        }
+        
         self.verbose      =   false
         self.faraday      =   {adapter: :net_http}
       end
