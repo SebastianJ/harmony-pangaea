@@ -4,7 +4,7 @@ module Harmony
       
       class << self
         
-        def send(from_address:, from_shard:, to_address:, to_shard:, amount: nil, wallet_script: ::Harmony::Pangaea.configuration.wallet_script, binary: :default, daemonize: false)
+        def send(from_address:, from_shard:, to_address:, to_shard:, amount: nil, wallet_script: ::Harmony::Pangaea.configuration.wallet_script, binary: :cross_shard, daemonize: false)
           raise ArgumentError, "You need to specify the from address" if from_address.to_s.empty?
           raise ArgumentError, "You need to specify the from shard"   if from_shard.to_s.empty?
           raise ArgumentError, "You need to specify the to address"   if to_address.to_s.empty?
