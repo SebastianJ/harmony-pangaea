@@ -15,7 +15,7 @@ module Harmony
         self.scripts      =   {
           node:   "#{self.node_path}/node.sh -t",
           wallet: "#{self.wallet_path}/wallet.sh -t",
-          tx_sender: File.expand_path(File.join(File.dirname(__FILE__), '../../scripts/tx_sender.sh'))
+          tx_sender: File.expand_path(File.join(File.dirname(__FILE__), 'scripts/tx_sender.sh'))
         }
         
         self.hosts        =   {
